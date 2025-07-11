@@ -1,3 +1,5 @@
+# Exercise 1
+
 For linting tools like pylint, flake and mypy are commonly used. Pylint is highly configurable and extensible. Flake8 is fast and light weight. Mypy is user friendly and straight forward. For testing pytest is the most popular tool. It has features like parameterized testing, fixtures and assert rewriting. For building setup tools is one of the options. Setuptools is a fully-featured, actively-maintained, and stable library designed to facilitate packaging Python projects.
 
 There are many alternatives to Jenkins and Github actions. GitLab CI/CD has deep integration with GitLab and flexible automation.CircleCI is known for speed and cloud-based builds.Travis CI has simple setup, popular for open-source projects.TeamCity is a self-hosted option with customizable build processes.AWS CodePipeline works well with AWS services. Azure DevOps is Microsoft’s CI/CD solution with broad enterprise support.
