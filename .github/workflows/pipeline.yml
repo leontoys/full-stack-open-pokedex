@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches : [main]
+    types : [opened,synchronize]
 
 jobs:
   simple_deployment_pipeline:
@@ -29,6 +32,7 @@ jobs:
           wait-on: http://localhost:5000
 
       - name: Trigger deployment
+        if : ${{ github.event_name == 'push' }}
         uses: sws2apps/render-deployment@main #consider using pin for dependabot auto update
         with:
           serviceId: ${{ secrets.RENDER_SERVICE_ID }}
