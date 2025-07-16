@@ -44,6 +44,8 @@ jobs:
     runs-on: ubuntu-22.04
     if: ${{ github.event_name == 'push' }}
     steps:
+      - name : Checkout Code
+        uses: actions/checkout@v4
       - name : Bump version and push tag
         uses : anothrNick/github-tag-action@1.64.0
         env : 
