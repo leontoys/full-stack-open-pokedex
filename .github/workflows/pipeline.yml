@@ -32,7 +32,7 @@ jobs:
           wait-on: http://localhost:5000
 
       - name: Trigger deployment
-        if : ${{ github.event_name == 'push' }}
+        if : ${{ github.event_name == 'push' && contains(join(github.event.commits.*.message, ' '), '#skip') != 'true' }}
         uses: sws2apps/render-deployment@main #consider using pin for dependabot auto update
         with:
           serviceId: ${{ secrets.RENDER_SERVICE_ID }}
@@ -42,7 +42,7 @@ jobs:
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-22.04
-    if: ${{ github.event_name == 'push' }}
+    if : ${{ github.event_name == 'push' && contains(join(github.event.commits.*.message, ' '), '#skip') != 'true' }}
     steps:
       - name : Checkout Code
         uses: actions/checkout@v4
