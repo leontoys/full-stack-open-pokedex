@@ -41,20 +41,20 @@ jobs:
 
 
       - name: Notify Success
-        uses: rjstone/discord-webhook-notify@v2
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
         if : ${{ success() && github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
         with:
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          severity: info
-          details: All tests passed!
+          args: All tests passed!
 
       - name: Notify Error
-        uses: rjstone/discord-webhook-notify@v2
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
         if : ${{ failure() }}
         with:
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          severity: info
-          details: |
+          args: |
             Build failed!
             Commit : ${{ github.sha }}
             By : ${{ github.actor }}
