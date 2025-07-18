@@ -12,8 +12,8 @@ jobs:
       - name: Check the deployed service URL
         uses: jtalk/url-health-check-action@v4
         with:
-          url: https://full-stack-open-pokedex-zaim.onrender.co/
+          url: https://full-stack-open-pokedex-zaim.onrender.com/this-should-fail
           follow-redirect: false
           max-attempts: 3
           retry-delay: 5s
-          retry-all: false
+          retry-all: true
