@@ -39,6 +39,27 @@ jobs:
           apiKey: ${{ secrets.RENDER_API_KEY }}
           multipleDeployment: false #optional, default true
 
+
+      - name: Notify Success
+        uses: rjstone/discord-webhook-notify@v2
+        if : ${{ success() && github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          severity: info
+          details: All tests passed!
+
+      - name: Notify Error
+        uses: rjstone/discord-webhook-notify@v2
+        if : ${{ failure() && github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          severity: info
+          details: |
+            Build failed!
+            Commit : ${{ github.sha }}
+            By : ${{ github.actor }}
+      
+
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-22.04
