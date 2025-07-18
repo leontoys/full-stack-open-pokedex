@@ -50,7 +50,7 @@ jobs:
 
       - name: Notify Error
         uses: rjstone/discord-webhook-notify@v2
-        if : ${{ failure() && github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
+        if : ${{ failure() }}
         with:
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
           severity: info
