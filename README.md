@@ -1,3 +1,8 @@
+## Related Repository
+
+This project works together with another repository:  
+👉 [part11 repository](https://github.com/leontoys/part11)
+
 # Full Stack open CI/CD
 
 This repository is used for the CI/CD module of the Full stack open course
